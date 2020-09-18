@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Gustavo Ridgue"> 
+	<meta name="keywords" content="Departamento, ">
+	<meta name="description" content="Página sobre o café gaúcho">
+	<title>Departamentos</title>
+	<link rel="icon" href="img/logo_omni.png" type="image/x-icon">
+	<link rel="stylesheet" href="css/style.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/reset.css"> -->
+</head>
+<body>
+	<header>
+		<div class="titulo">
+			<h1>Cadastros de Departamentos</h1>
+			<h2>Seja bem-vindo à área de cadastramento de departamentos</h2>
+		</div>
+	</header>
+	
+	<article>
+		<section>
+
+			<form id="formulario">
+
+				<div class="input-grupo1">
+					<div class="g-inputs">
+						<label for="inputCod" class="label-block label-bold label-bold">Código:</label>
+						<input type="number" id="inputCod" class="input-cod" name="iCod" >
+					</div>
+
+					<div class="g-inputs">
+						<label for="inputNome" class="label-block label-bold">Nome:</label>
+						<input type="text" id="inputNome" class="input-nome" name="iNome" >
+					</div>
+
+					<div class="g-inputs">
+						<label class="label-block label-bold">Estado:</label>
+
+						<select id="inputEstado" name="iEstado">
+							<option>Acre</option>
+							<option>Alagoas</option>
+							<option>Amapá</option>
+							<option>Amazonas</option>
+							<option>Bahia</option>
+							<option>Ceará</option>
+							<option>Distrito Federal</option>
+							<option>Espírito Santo</option>
+							<option>Goiás</option>
+							<option>Maranhão</option>
+							<option>Maranhão</option>
+							<option>Mato Grosso</option>
+							<option>Mato Grosso do Sul</option>
+							<option>Minas Gerais</option>
+							<option>Pará</option>
+							<option>Paraíba</option>
+							<option>Paraná</option>
+							<option>Pernambuco</option>
+							<option>Piauí</option>
+							<option>Rio de Janeiro</option>
+							<option>Rio Grande do Norte</option>
+							<option>Rio Grando do Suk</option>
+							<option>Rondônia</option>
+							<option>Roraima</option>
+							<option>Santa Catarina</option>
+							<option>São Paulo</option>
+							<option>Sergipe</option>
+							<option>Tocantins</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="input-grupo2">
+					<div class="g-inputs">
+						<label for="inputLocal" class="label-block label-bold">Local:</label>
+						<input type="text" id="inputLocal" class="input-local" name="iLocal" >
+					</div>
+
+
+					<div class="g-inputs">
+						<label for="inputCidade" class="label-block label-bold">Cidade:</label>
+						<input type="text" id="inputCidade" class="input-cidade" name="iCidade" >
+					</div>
+				</div>	
+
+				<div class="input-grupo3">
+					<div class="g-inputs">
+						<label class="label-block label-bold">Diretoria:</label>
+						<label class="input-diretoria ml-0"><input type="radio" name="inputDiretoria" class="radioDiretoria"  id="radio-eis">E.I.S</label>
+
+						<label class="input-diretoria"><input type="radio" name="inputDiretoria" class="radioDiretoria" id="radio-recuperacao">Recuperação</label>
+
+						<label class="input-diretoria" ><input type="radio" name="inputDiretoria" class="radioDiretoria" id="radio-negocios">Negócios</label>
+					</div>	
+				</div>
+
+				<button class="btn-salvar" id="btnSalvar">Salvar</button>
+							
+			</section>
+		</form>
+
+		<section>
+
+			<div>
+				<table id="tabela" align="center">
+					<thead>
+						<tr>
+							<th>Código</th>
+							<th>Nome</th>
+							<th>Alterações</th>
+						</tr>
+					</thead>
+
+					<tbody id="corpoTabela">
+
+						<tr>
+							<td>1</td>
+							<td>Departamento 1</td>
+							<td> 
+								<button class="btn-detalhes">Detalhes</button>
+								<button class="btn-editar">Editar</button>
+								<button class="btn-excluir">Excluir</button>
+							</td>
+						</tr>
+
+						<tr>
+							<td>2</td>
+							<td>Departamento 2</td>
+							<td>
+								<button class="btn-detalhes">Detalhes</button>
+								<button class="btn-editar">Editar</button> 
+								<button class="btn-excluir">Excluir</button></td>
+							</tr>
+
+							<tr>
+								<td>3</td>
+								<td>Departamento 3</td>
+								<td> 
+									<button class="btn-detalhes">Detalhes</button>
+									<button class="btn-editar">Editar</button>
+									<button class="btn-excluir">Excluir</button>
+								</td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+
+			</section>
+		</article>
+
+		<script src="js/salvarDept.js"></script>
+		<script src="js/excluirDept.js"></script>
+	</body>
+	</html>
