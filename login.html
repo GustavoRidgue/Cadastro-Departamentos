@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale-1.0">
+	<meta name="author" content="Gustavo Ridgue"> 
+	<meta name="keywords" content="omni, departamentos">
+	<meta name="description" content="Página de cadastro de departamentos">
+	<title>Omni - Login</title>
+	<link rel="icon" href="img/logo_omni.png" type="image/x-icon">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<title>Document</title>
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-azul-omni">
+			<a class="navbar-brand" href="#">
+		    <img src="./img/logo_omni.png" width="30" height="30" class="d-inline-block align-top img-nav m-2" alt="" loading="lazy">
+		  </a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		      <li class="nav-item active">
+		        <h4 class=""><a class="nav-link text-white" href="#">Omni - Departamento</a></h4>
+		      </li>
+		    </ul>
+		  </div>
+		</nav>
+	</header>
+
+	<article>
+		<div class="introducao text-center">
+			<h1 class="laranja-omni mt-3">Preencha o formulário para entrar no sistema</h1>
+			<h2 class="azul-omni"></h2>
+		</div>
+		
+		<div class="formulario-container">
+			<form class="login p-4 mt-4" id="formulario" action="index.html" method="GET">
+				<div class="form-group">
+			    <label for="inputUsuario">Usuário</label>
+			    <input type="text" class="form-control" id="inputUsuario" aria-describedby="emailHelp">
+			    <span id="erro-usuario"></span>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputEmail">Email</label>
+			    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+			    <small id="emailHelp" class="form-text text-muted">Nós nunca iremos compartilhar seu email sem a sua permissão</small>
+			    <span id="erro-email"></span>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputSenha">Senha</label>
+			    <input type="password" class="form-control" id="inputSenha">
+			    <span id="erro-senha"></span>
+			  </div>
+			  <div class="form-group form-check">
+			    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+			    <label class="form-check-label" for="exampleCheck1">Manter-me logado</label>
+			  </div>
+			  <a type="submit" class="btn btn-primary" id="botao-login" onclick="return validarForm()">Log in</a>
+			</form>
+		</div>
+		
+	</article>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<script src="js/login.js"></script>
+	<!-- <script src="js/index.js"></script> -->
+</body>
+</html>

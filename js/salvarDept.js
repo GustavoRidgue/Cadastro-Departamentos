@@ -1,131 +1,243 @@
-var btnSalvar  = document.querySelector('#btnSalvar');
+var departamentosLocal = JSON.parse(localStorage.getItem("obj_dept")) || {};
 
-btnSalvar.addEventListener('click', function(event){
-  event.preventDefault();
+var botaoCria = $("#btnCriarDept");
+var form = document.querySelector('#formularioCriarDept');
 
-  var form = document.querySelector('#formulario');
+botaoCria.on("click", function(){
+	var codigo = $("#inputCodigo");
+	var nome = $("#inputNome");
+	var estado = $("#inputEstado");
+	var local = $("#inputLocal");
+	var cidade = $("#inputCidade");
 
-  var codigo = form.iCod.value;
-  var nome = form.iNome.value;
-  var estado = form.iEstado.value;
-  var local = form.iLocal.value;
-  var cidade = form.iCidade.value;
+	var checkboxes = document.querySelectorAll(".checkboxDiretoria");
+	var diretoria = "";
 
-  var checkboxes = document.querySelectorAll('.radioDiretoria');
+	for(var i=0; i<checkboxes.length; i++) {
+		if (checkboxes[0].checked) {
+			diretoria = 'E.I.S';
+		}
+		else if (checkboxes[1].checked) {
+			diretoria = 'Recuperação';
+		}
+		else if (checkboxes[2].checked) {
+			diretoria = 'Negócios';
+		}
+	}
 
-  for(var i=0; i<checkboxes.length; i++) {
-    if (checkboxes[0].checked) {
-      var valorRadio = 'E.I.S';
-    }
-    else if (checkboxes[1].checked) {
-      var valorRadio = 'Recuperação';
-    }
-    else if (checkboxes[2].checked) {
-      var valorRadio = 'Negócios ';
-    }
-  }
-  
-  //especifica onde vc quer criar um novo element
-  var novoTr = document.createElement("tr");
+	var chamarValidacao = validarCriarForm();
 
-  var codigoTd = document.createElement("td");
-  var nomeTd = document.createElement("td");
-  var estadoTd = document.createElement("td");
-  var localTd = document.createElement("td");
-  var cidadeTd = document.createElement("td");
-  var diretoriaTd = document.createElement("td");
+	if (chamarValidacao) {
+		var linhasIndex;
+		var obj_dept = localStorage.getItem("obj_dept");
+		obj_dept = JSON.parse(obj_dept);
 
-  var alteracoesTd = document.createElement("td");
-  var detalhesBtn = document.createElement("button");
-  var editarBtn = document.createElement("button");
-  var excluirBtn = document.createElement("button");
+		if (obj_dept == null) {
+			obj_dept = [];
+		}		
 
-  codigoTd.textContent = codigo;
-  nomeTd.textContent = nome;
-  estadoTd.textContent = estado;
-  localTd.textContent = local;
-  cidadeTd.textContent = cidade;
-  diretoriaTd.textContent = valorRadio;
+		var objDepartamento = {
+			nome: nome.val(),
+			codigo: codigo.val(),
+			cidade: cidade.val(),
+			local: local.val(),
+			estado: estado.val(),
+			diretoria: diretoria
+		}
 
-  detalhesBtn.textContent = "Detalhes";
-  editarBtn.textContent = "Editar";
-  excluirBtn.textContent = "Excluir";
+		obj_dept.push(objDepartamento);
 
-  detalhesBtn.classList.add('btn-detalhes');
-  editarBtn.classList.add('btn-editar');
-  excluirBtn.classList.add('btn-excluir');
-  excluirBtn.setAttribute('onclick', 'return excluir()');
+		localStorage.setItem("obj_dept", JSON.stringify(obj_dept));
 
-  alteracoesTd.appendChild(detalhesBtn);
-  alteracoesTd.appendChild(editarBtn);
-  alteracoesTd.appendChild(excluirBtn);
+		function montarTd(dado, classe) {
+			var td = document.createElement('td');
+			td.append(dado);
+			td.classList.add(classe);
 
-  //appendChil coloca algo como filho de algo
-  novoTr.appendChild(codigoTd);
-  novoTr.appendChild(nomeTd);
-  novoTr.appendChild(alteracoesTd);
-  // novoTr.appendChild(estadoTd);
-  // novoTr.appendChild(localTd);
-  // novoTr.appendChild(cidadeTd);
-  // novoTr.append(valorRadio);
+			return td;
+		}
 
-  var corpoTabela = document.querySelector('#corpoTabela');
-  corpoTabela.appendChild(novoTr);
-})
+		function montarTr(lugar, dado, classe) {
+			var departamentoTr = document.createElement("tr");
+			departamentoTr.classList.add("linha-tabela");
 
-// linha.parentNode.parentNode.removeChild(linha.parentNode);
+			if (lugar == "index") {
+				departamentoTr.append(montarTd(dado, classe));
 
+				return departamentoTr;
+			}
 
-/*
-var tabelaElement = document.querySelector('#corpoTabela tr');
-var inputCod      = document.querySelector('#inputCod');
-var inputNome     = document.querySelector('#inputNome');
-var inputEstado   = document.querySelector('#inputEstado');
-var inputLocal    = document.querySelector('#inputLocal');
-var inputCidade   = document.querySelector('#inputCidade');
-*/
+			else if (lugar == "listar") {
+				departamentoTr.append(montarTd(dado, classe));
 
-/*
-var informacoes = [
-  {codigo: 1, nome: 'departamento 1'},
-  {codigo: 2, nome: 'departamento 2'}
-]
+				return departamentoTr;
+			}
+		}
 
-function renderInformacoes() {
-  //Excluit conteúdo da lista antes de renderiza-la
-  tabelaElement.innerHTML = '';
+		var qtdLinhas = 1;
+		var linhas = document.querySelectorAll(".linha-tabela");
+		for (var i = 0; i < linhas.length; i++) {
+			qtdLinhas++;
+			console.log('i: ' + i);
+			console.log('linhas: ' + qtdLinhas);
 
-  //atribui valores de todos para var todo
-  for(informacao of informacoes) {            //parei aqui
-    //vai ser o li
-    var todoElement = document.createElement('li');
-    //vai ficar dentro da li ultilizando o todo pois contém os textos
-    var todoText = document.createTextNode(todo);
+		}
 
-    //criacao do link de excluir
-    var linkElement = document.createElement('a');
-    //cria o href do link
-    linkElement.setAttribute('href', '#');
+		function listarDepto(){
+			let deptoNovo = JSON.parse(localStorage.getItem('obj_dept')) || [];
+			let corpoTabela = $('#corpo-tabela');
+			var corpoTabelaListar = $("#corpo-tabela-listar");
+			var index = 0;
 
-    //retornar a posicao do array
-    //procura no array de todos o index
-    var posicao = todos.indexOf(todo);
-    //chama a function que deleta
-    linkElement.setAttribute('onclick', 'deleteTodo(' + posicao + ')');
+			for(var i in deptoNovo){
+				console.log('loop ' + index)
+				index++;
+				var deptno = deptoNovo[i];
 
-    // coloca texto dentro do link
-    var linkText = document.createTextNode('Excluir');
-  
-    //add o texto do linkText no link
-    linkElement.appendChild(linkText);
+				console.log("Nome do departamento: " + deptno.nome)
 
-    //add todoText dentro do todoElement
-    todoElement.appendChild(todoText);
-    //add o link element no final
-    todoElement.appendChild(linkElement);
-  
-    //pega a ul e add os todoElement
-    listElement.appendChild(todoElement);
-  }
+				corpoTabela.append(montarTr("index", qtdLinhas , "dept-novo"));
+				corpoTabela.append(montarTr("index", deptno.codigo , "dept-novo"));
+				corpoTabela.append(montarTr("index", deptno.nome , "dept-novo"));
+				corpoTabela.append(montarTr("index", "🗑" , "dept-novo"));
+
+				corpoTabelaListar.append(montarTr("listar", qtdLinhas , "dept-novo"));
+				corpoTabelaListar.append(montarTr("listar", deptno.codigo , "dept-novo"));
+				corpoTabelaListar.append(montarTr("listar", deptno.nome , "dept-novo"));
+				corpoTabelaListar.append(montarTr("listar", deptno.cidade , "dept-novo"));
+				corpoTabelaListar.append(montarTr("listar", deptno.local , "dept-novo"));
+				corpoTabelaListar.append(montarTr("listar", deptno.estado , "dept-novo"));
+				corpoTabelaListar.append(montarTr("listar", deptno.diretoria , "dept-novo"));
+				corpoTabelaListar.append(montarTr("listar", "🗑️" , "dept-novo"));
+				// corpoTabela.innerHTML = '<tr>' + '<td>'+deptno.codigo+'</td>'+'<td>'+deptno.nome+'</td>'+'</tr>' ;
+				// corpoTabelaListar.innerHTML = '<tr>' + '<td>'+deptno.codigo+'</td>'+'<td>'+deptno.nome+'</td>'+'<td>'+deptno.local+'</td>'+'<td>'+deptno.cidade+'</td>'+'<td>'+deptno.estado+'</td>'+'<td>'+deptno.diretoria+'</td><td><input type="button" class="botao" value="Editar"><input type="button" class="botao" value="Excluir"></td>' + '</tr>' ;
+			}
+		}
+
+		listarDepto();
+
+		console.log(objDepartamento.codigo)
+		console.log(objDepartamento.nome)
+		console.log(objDepartamento.cidade)
+		console.log(objDepartamento.local)
+		console.log(objDepartamento.estado)
+		console.log(objDepartamento.diretoria)
+
+		// function montarTd(tipoDado, dado, classe) {
+		// 	if (tipoDado == "td") {
+		// 		var td = document.createElement('td');
+		// 		td.append(dado);
+		// 		td.classList.add(classe);
+
+		// 		return td;
+		// 	}
+
+		// 	else if (tipoDado == "link"){
+		// 		var td = document.createElement('td');
+		// 		var tdA = document.createElement('a');
+
+		// 		tdA.append(dado);
+		// 		td.append(tdA);
+		// 		td.classList.add(classe);
+		// 		tdA.classList.add("btn-excluir");
+
+		// 		return td;
+		// 	}
+
+		// 	else if (tipoDado == "posicao") {
+		// 		var td = document.createElement('td');
+		// 		td.classList.add(classe);
+
+		// 		return td;
+		// 	}
+		// }
+
+		// function montarTr(lugar) {
+		// 	var departamentoTr = document.createElement("tr");
+		// 	departamentoTr.classList.add("linha-tabela");
+
+		// 	var qtdLinhas = 1;
+		// 	var linhas = document.querySelectorAll(".linha-tabela");
+		// 	for (var i = 0; i < linhas.length; i++) {
+		// 		qtdLinhas++;
+		// 		console.log('i: ' + i);
+		// 		console.log('linhas: ' + qtdLinhas);
+
+		// 	}
+
+		// 	if (lugar == "index") {
+		// 		departamentoTr.appendChild(montarTd("td", qtdLinhas, "numero"));
+		// 		departamentoTr.appendChild(montarTd("td", objDepartamento.nome, "dept-nome"));
+		// 		departamentoTr.appendChild(montarTd("td", objDepartamento.codigo, "dept-codigo"));
+		// 		departamentoTr.appendChild(montarTd("link", "🗑️", "dept-excluir"));
+
+		// 		return departamentoTr;
+		// 	}
+
+		// 	else if (lugar == "listar") {
+		// 		departamentoTr.appendChild(montarTd("td", qtdLinhas, "numero"));
+		// 		departamentoTr.appendChild(montarTd("td", objDepartamento.nome, "dept-nome"));
+		// 		departamentoTr.appendChild(montarTd("td", objDepartamento.codigo, "dept-codigo"));
+		// 		departamentoTr.appendChild(montarTd("td", objDepartamento.cidade, "dept-cidade"));
+		// 		departamentoTr.appendChild(montarTd("td", objDepartamento.local, "dept-local"));
+		// 		departamentoTr.appendChild(montarTd("td", objDepartamento.estado, 'dept-estado'));
+		// 		departamentoTr.appendChild(montarTd("td", objDepartamento.diretoria, "dept-diretoria"));
+		// 		departamentoTr.appendChild(montarTd("link", "🗑️", "dept-excluir"));
+
+		// 		return departamentoTr;
+		// 	}
+		// }
+
+		// function adicionaDepartamento(){
+		// 	var linhaIndex = montarTr("index");
+		// 	var linhaListar = montarTr("listar");
+
+		// 	var corpoTabela = $("#corpo-tabela");
+		// 	var corpoTabelaListar = $("#corpo-tabela-listar");
+
+		// 	corpoTabela.append(linhaIndex);
+		// 	corpoTabelaListar.append(linhaListar);
+		// 	removerLinha();
+		// }
+		// var botaoDimissmodal = $("#btnCriarDept");
+		// botaoDimissmodal.attr("data-dismiss", "modal");
+		// adicionaDepartamento();
+		// form.reset();
+
+		// // atualizaPosicao();
+
+		// function savarStorage(){
+		// 	var linhasIndex;
+		// 	var linhasListar = document.querySelectorAll("#corpo-tabela-listar.linha-tabela");
+
+		// 	localStorage.setItem("obj_dept", JSON.stringify(objDepartamento));
+	}
+
+// savarStorage();
+// savarStorage(objDepartamento);
+
+// }
+else if (!chamarValidacao) {
+	return false;
 }
-*/
+});
+
+// function listarDepto(){
+// 	let deptoNovo = JSON.parse(localStorage.getItem('obj_dept'));
+// 	let corpoTabela = $('tbody');
+// 	for(var i in deptoNovo){
+// 		var depto = deptoNovo[i];
+// 		corpoTabela.innerHTML = '<td>'+depto.codigo+'</td>'+'<td>'+depto.nome+'</td>'+'<td>'+depto.local+'</td>'+'<td>'+depto.cidade+'</td>'+'<td>'+depto.estado+'</td>'+'<td>'+depto.diretoria+'</td><td><input type="button" class="botao" value="Editar"><input type="button" class="botao" value="Excluir"></td>';
+// 	}
+// }
+
+// listarDepto();
+
+
+
+
+
+
+
+
+

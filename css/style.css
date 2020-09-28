@@ -1,184 +1,134 @@
-html {
-	font-family: 'Open Sans', sans-serif;
-	font-size: 1.05em;
-	/*text-align: center;*/
-	background-color: #d3d2fd; 
+.img-nav {
+	width: 80px;
+	height: 40px;
 }
 
-.titulo {
-	/*margin-left: 3.5em;*/
-	color: #FFA500;
-	text-align: center;
+.azul-omni{
+ color: #072f77;
 }
 
-
-h2 {
-	color: #000080;
+.laranja-omni {
+	color: #EA6620;
 }
 
-article {
+.bg-azul-omni{
+ color: white;
+ background-color: #072f77;
+}
+
+.bg-laranja-omni {
+	color: white;
+	background-color: #EA6620;
+}
+
+.btn-azul-omni{
+ color: white;
+ background-color: #072f77;
+ border-color: #072f77;
+}
+
+.btn-azul-omni:hover{
+ background-color: #103982 ;
+ border-color: #103982 ;
+ color: white;
+}
+
+.btn-laranja-omni {
+	color: white;
+	background-color: #EA6620;
+	border-color: #EA6620 ;
+}
+
+.btn-laranja-omni:hover {
+	background-color: #ff772e ;
+	border-color: #ff772e ;
+	color: white;
+}
+
+.btn-busca {
+	border-color: #EA6620;
+	color: #EA6620;
+}
+
+.btn-busca:hover {
+	border-color: #EA6620;
+	background-color: #EA6620;
+}
+
+.login {
 	margin: 0 auto;
+	width: 500px;
+	background-color: #b5e6f7;
 }
 
-form {
-	/*margin-left: -300px;*/
-	/*width: 90%; */
-	margin: 4em 0;
-	text-align: center;
-
+.form-erro {
+	color: red;
 }
 
-form input, select {
-	text-align: center;
-	border-radius: 15px;
-	border: none;
-	outline: none;
-	background-color: #FEFEFE;
-	padding: .2em 0;
-}
-
-.input-grupo1, .input-grupo2, .input-grupo3 {
-	display: block;
-	/*text-align: center;*/
-	margin: 2.5em 2.5em;
-	color: #483D8B;
-}
-
-.g-inputs {
-	display: inline-block;
-	margin: 0 1em;
-}
-
-
-form input, label{
-	font-size: 1.1em;
-	/*display: inline-block;*/
-	/*margin: 0 auto;*/
-}
-
-select {
-	font-size: 1.1em;
-}
-
-.label-block {
-	display: block;
-}
-
-.label-bold {
-	font-weight: bold;
-}
-
-
-.input-diretoria {
-	display: inline-block;
-	margin: .2em .8em;
-}
-
-.ml-0 {
-	margin-left: 0;
-}
-
-.btn-salvar {
-	padding: .5em;
-	border: none;
-	outline: none;
-	color: white;
-	background-color: #7977ff;
-	border-radius: 5px;
-	font-size: 1.1em;
-	cursor: pointer;
-}
-
-.btn-salvar:hover {
-	background-color: #5f5dec;
-	transition: 300ms;
-}
-
-table {
-	border-spacing: 0;
-	border-collapse: collapse;
-	text-align: center;
-	/*margin: 0 2em;*/
-	background-color: /*#00f3ee*/ #fefefe;
-	color: #483D8B;
-}
-
-thead {
-	background-color: #000080;
-	color: #FFA500;
-}
-
-td, th {
-	border: 2px solid #000000;
-	padding: .3em 4em;
-}
-
-.btn-detalhes {
-	border-radius: 5px;
-	margin: 0 .2em;
-	background-color: #FFA500;
-	color: white;
-	border: none;
-	padding: 4px 5px;
-	outline: none;
-	cursor: pointer;
-}
-
-.btn-editar {
-	background-color: #000080;
-	color: white;
-	border-color: #000080;
-	border-radius: 5px;
-	margin: 0 .2em;
-	border: none;
-	padding: 4px 5px;
-	outline: none;
-	cursor: pointer;
+.tamanho-tabela {
+	margin: 0 auto;
+	min-width: 200px;
+	width: 700px;
 }
 
 .btn-excluir {
-	background-color: red;
-	color: white;
-	border-color: #FFA500;
-	border-radius: 5px;
-	margin: 2px .3em;
-	border: none;
-	padding: 4px 5px;
-	outline: none;
+	border: 2px solid transparent;
 	cursor: pointer;
 }
 
-@media screen and (max-width: 352px) {
-	td, th {
-		padding: 0 .2em;
+.numero {
+	font-weight: bold;
+}
+
+.icone-criar {
+	margin: 30px 0 10px 710px;
+	color: #ff9258;
+	cursor: pointer;
+}
+
+.icone-criar:hover {
+	transition: 400ms;
+	color: #EA6620;
+}
+
+svg {
+	font-size: 2.5em;
+}
+
+.esconder {
+	display: none;
+}
+
+.btn-criar-fimTabela {
+	margin: 0 auto;
+	text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+	.tamanho-tabela {
+		width: 500px;
+	}
+
+	.icone-criar {
+		text-align: center;
+		margin: 15px 0 7px 507px;
+	}
+
+	svg {
+		font-size: 2em;
 	}
 }
 
-@media screen and (max-width: 452px) {
-	td, th {
-		padding: 0 .2em;
+@media screen and (max-width: 575px) {
+	.tamanho-tabela {
+		width: 300px;
+	}
+	.icone-criar {
+		text-align: center;
+		margin: 10px 0 3px 305px;
 	}
 
-	.g-inputs {
-		display: block;
-	}
-}
-
-@media screen and (max-width: 660px) {
-	.g-inputs {
-		display: block;
-		margin: 1em .5em;
-	}
-}
-
-@media screen and (max-width: 660px) {
-	td, th {
-		padding: .2em .5em!important;
-	}
-}
-
-@media screen and (max-width: 900px) {
-	td, th {
-		padding: .2em 2.5em;
+	svg {
+		font-size: 1.5em;
 	}
 }
